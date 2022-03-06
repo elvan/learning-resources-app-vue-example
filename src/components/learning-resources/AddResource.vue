@@ -1,19 +1,24 @@
 <template>
   <base-card>
-    <form>
+    <form @submit="submitData">
       <div class="form-control">
         <label for="title">Title</label>
-        <input id="title" name="title" type="text" />
+        <input ref="titleInput" id="title" name="title" type="text" />
       </div>
 
       <div class="form-control">
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="3"></textarea>
+        <textarea
+          ref="descriptionInput"
+          id="description"
+          name="description"
+          rows="3"
+        ></textarea>
       </div>
 
       <div class="form-control">
         <label for="link">Link</label>
-        <input id="link" name="link" type="url" />
+        <input ref="linkInput" id="link" name="link" type="url" />
       </div>
 
       <div>
@@ -22,6 +27,33 @@
     </form>
   </base-card>
 </template>
+
+<script>
+export default {
+  inject: ['addResource'],
+
+  methods: {
+    submitData(event) {
+      event.preventDefault();
+
+      const enteredTitle = this.$refs.titleInput.value;
+      const enteredDescription = this.$refs.descriptionInput.value;
+      const enteredLink = this.$refs.linkInput.value;
+
+      if (
+        enteredTitle.trim().length === 0 ||
+        enteredDescription.trim().length === 0 ||
+        enteredLink.trim().length === 0
+      ) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      this.addResource(enteredTitle, enteredDescription, enteredLink);
+    },
+  },
+};
+</script>
 
 <style scoped>
 label {
