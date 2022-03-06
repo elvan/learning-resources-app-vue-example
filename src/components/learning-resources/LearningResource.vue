@@ -8,14 +8,14 @@
     </base-card>
     <p>{{ description }}</p>
     <nav>
-      <a :href="url" target="_blank">View Resource</a>
+      <a :href="link" target="_blank">View Resource</a>
     </nav>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['title', 'description', 'url'],
+  props: ['title', 'description', 'link'],
 };
 </script>
 
