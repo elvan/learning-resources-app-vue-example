@@ -1,11 +1,11 @@
 <template>
   <li>
-    <div>
+    <base-card>
       <header>
         <h3>{{ title }}</h3>
         <button>Delete</button>
       </header>
-    </div>
+    </base-card>
     <p>{{ description }}</p>
     <nav>
       <a :href="url" target="_blank">View Resource</a>
