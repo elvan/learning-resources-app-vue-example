@@ -1,4 +1,12 @@
 <template>
+  <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="closeDialog">
+    <template #default>
+      <p>The input is invalid. Please try again.</p>
+    </template>
+    <template #actions>
+      <button @click="closeDialog">Close</button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit="submitData">
       <div class="form-control">
@@ -32,6 +40,12 @@
 export default {
   inject: ['addResource'],
 
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
+
   methods: {
     submitData(event) {
       event.preventDefault();
@@ -45,11 +59,15 @@ export default {
         enteredDescription.trim().length === 0 ||
         enteredLink.trim().length === 0
       ) {
-        alert('Please fill in all fields');
+        this.inputIsInvalid = true;
         return;
       }
 
       this.addResource(enteredTitle, enteredDescription, enteredLink);
+    },
+
+    closeDialog() {
+      this.inputIsInvalid = false;
     },
   },
 };
