@@ -31,6 +31,7 @@ export default {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      removeResource: this.removeResource,
     };
   },
 
@@ -91,6 +92,16 @@ export default {
       };
 
       this.storedResources.unshift(newResource);
+    },
+
+    removeResource(resourceId) {
+      const resourceIndex = this.storedResources.findIndex(
+        (resource) => resource.id === resourceId
+      );
+
+      if (resourceIndex !== -1) {
+        this.storedResources.splice(resourceIndex, 1);
+      }
     },
   },
 };
