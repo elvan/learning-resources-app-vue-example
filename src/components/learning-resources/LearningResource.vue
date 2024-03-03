@@ -3,7 +3,7 @@
     <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <button>Delete</button>
+        <base-button mode="flat">Delete</base-button>
       </header>
       <p>{{ description }}</p>
       <nav>
@@ -21,8 +21,8 @@ export default {
 
 <style scoped>
 li {
-  margin: auto;
   max-width: 40rem;
+  margin: auto;
 }
 
 header {
